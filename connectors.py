@@ -6,6 +6,7 @@ import time
 def get_data():
 
     file_id = os.getenv('SEVEN_WONDERS_DS_URL')
+    print(file_id)
     url = f"https://drive.google.com/uc?id={file_id}"
     output = "data.xlsx"
 
