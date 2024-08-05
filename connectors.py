@@ -7,7 +7,7 @@ def get_data():
 
     file_id = os.getenv('SEVEN_WONDERS_DS_URL')
     url = f"https://drive.google.com/uc?id={file_id}"
-    output = "data/data.xlsx"
+    output = "data.xlsx"
 
     if not os.path.exists(output):
         gdown.download(url, output, quiet=False)
