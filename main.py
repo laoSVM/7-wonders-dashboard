@@ -8,4 +8,4 @@ st.title("7 Wonders!")
 load_success = get_data()
 
 if load_success:
-    st.write('Start building dashboard')
+    st.write('7 Wonders 启动!')
