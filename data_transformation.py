@@ -1,7 +1,6 @@
-from data import GameManager
+import pandas as pd
+# from data import GameManager
 
-gm = GameManager()
-df = gm.get_table_data()
 
 def get_players_base_stats(df):
     players_df = df.groupby('PLAYER').agg({
@@ -50,13 +49,17 @@ def get_player_best_performing_wonder(player_wonder_stats, columns_to_keep=[]):
     
     return best_performing[columns_to_keep]
 
-def join_best_performing_wonder_with_players():
-    players_df = get_players_base_stats(df)
+def join_best_performing_wonder_with_players(players_base_stats, player_wonder_stats):
+    players_df = players_base_stats.copy()
 
-    player_wonder_stats = get_player_wonder_stats(df)
     best_performing = get_player_best_performing_wonder(player_wonder_stats, ['PLAYER', 'BEST WONDER', 'BEST WONDER WIN RATE'])
 
     players_df = pd.merge(players_df, best_performing, on='PLAYER')
 
     return players_df
 
+def get_champion_player(players_base_stats):
+    return players_base_stats.loc[players_base_stats['WINNING RATE'].idxmax()]
+
+def get_master_player(players_base_stats):
+    return players_base_stats.loc[players_base_stats['WIN'].idxmax()]
